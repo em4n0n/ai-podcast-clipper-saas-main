@@ -321,7 +321,7 @@ class AiPodcastClipper:
         print("Transcription models loaded...")
 
         print("Creating gemini client...")
-        self.gemini_client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
+        self.gemini_client = genai.Client(api_key=os.environ["open_ai"])
         print("Created gemini client...")
 
     def transcribe_video(self, base_dir: str, video_path: str) -> str:
