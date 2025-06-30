@@ -321,8 +321,10 @@ class AiPodcastClipper:
         print("Transcription models loaded...")
 
         print("Creating gemini client...")
-        self.gemini_client = genai.Client(api_key=os.environ["open_ai"])
+        self.gemini_client = genai.Client(api_key=os.environ["OPEN_AI_KEY"],)
         print("Created gemini client...")
+        print("OpenAI key:", os.environ.get("OPEN_AI_KEY"))
+
 
     def transcribe_video(self, base_dir: str, video_path: str) -> str:
         audio_path = base_dir / "audio.wav"
@@ -458,3 +460,8 @@ def main():
     response.raise_for_status()
     result = response.json()
     print(result)
+    print("Status Code:", response.status_code)
+    print("Response Text:", response.text)
+    print("URL:", url)
+    print("Headers:", headers)
+    print("Payload:", payload)
