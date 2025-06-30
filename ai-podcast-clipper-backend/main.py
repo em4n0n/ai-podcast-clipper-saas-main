@@ -6,6 +6,7 @@ import shutil
 import subprocess
 import time
 import uuid
+import os
 import boto3
 import cv2
 from fastapi import Depends, HTTPException, status
@@ -14,8 +15,8 @@ import ffmpegcv
 import modal
 import numpy as np
 from pydantic import BaseModel
-import os
 from google import genai
+import os
 
 import pysubs2
 from tqdm import tqdm
@@ -440,8 +441,12 @@ class AiPodcastClipper:
 
 @app.local_entrypoint()
 def main():
+    from dotenv import load_dotenv
+    import os
     import requests
 
+    load_dotenv()
+    
     ai_podcast_clipper = AiPodcastClipper()
 
     url = ai_podcast_clipper.process_video.web_url
@@ -451,9 +456,8 @@ def main():
     }
 
     headers = {
-        "Content-Type": "application/json",
-        "Authorization": f"Bearer {os.environ['AUTH_TOKEN']}"
-    }
+        "Authorization": "Bearer 6e8c27b4d9e045f3adba7903fb6f12b7a9cf5debd4fc403ba181f2c0a9e113c2",
+        "Content-Type": "application/json"}
 
     response = requests.post(url, json=payload,
                              headers=headers)
