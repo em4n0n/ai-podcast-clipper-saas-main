@@ -403,7 +403,7 @@ class AiPodcastClipper:
         # Download video file
         video_path = base_dir / "input.mp4"
         s3_client = boto3.client("s3")
-        s3_client.download_file("ai-podcast-clipper", s3_key, str(video_path))
+        s3_client.download_file("ai-podcast-clipper-backend", s3_key, str(video_path))
 
         # 1. Transcription
         transcript_segments_json = self.transcribe_video(base_dir, video_path)
